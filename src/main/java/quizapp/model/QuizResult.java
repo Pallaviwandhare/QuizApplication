@@ -2,22 +2,26 @@ package quizapp.model;
 
 import java.time.LocalDateTime;
 
-public class QuizQuestion {
+public class QuizResult {
     private int id;
     private String username;
     private int score;
     private int total;
     private LocalDateTime createdAt;
 
-    public QuizQuestion(int id, String username, int total, LocalDateTime createdAt, int score) {
-        this.id = id;
-        this.username = username;
-        this.total = total;
-        this.createdAt = createdAt;
-        this.score = score;
+
+    public QuizResult() {
     }
 
-    public QuizQuestion() {
+    public QuizResult(int id, String username, int score, int total, LocalDateTime createdAt) {
+        this.id = id;
+        this.username = username;
+        this.score = score;
+        this.total = total;
+        this.createdAt = createdAt;
+    }
+
+    public QuizResult(String username, int score, int total) {
     }
 
     public int getId() {
@@ -58,29 +62,5 @@ public class QuizQuestion {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public String getQuestion() {
-        return "";
-    }
-
-    public String getOptionA() {
-        return "";
-    }
-
-    public Object getOptionB() {
-        return null;
-    }
-
-    public Object getOptionC() {
-        return null;
-    }
-
-    public Object getOptionD() {
-        return null;
-    }
-
-    public String getCorrectOption() {
-        return "";
     }
 }

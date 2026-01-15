@@ -1,57 +1,72 @@
 package quizapp.repository;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import quizapp.model.QuizQuestion;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.Collection;
 
 @Repository
 public class QuizRepository {
 
-    private final JdbcTemplate jdbcTemplate;
+    private int id;
+    private String username;
+    private int score;
+    private int total;
+    private LocalDateTime createdAt;
 
-    public QuizRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public void QuizResult() {}
+
+    public void QuizResult(String username, int score, int total) {
+        this.username = username;
+        this.score = score;
+        this.total = total;
     }
 
-    private final RowMapper<QuizQuestion> rowMapper = (rs, rowNum) -> {
-        QuizQuestion q = new QuizQuestion();
-        q.setId(rs.getInt("id"));
-        q.setQuestion(rs.getString("question"));
-        q.setOptionA(rs.getString("option_a"));
-        q.setOptionB(rs.getString("option_b"));
-        q.setOptionC(rs.getString("option_c"));
-        q.setOptionD(rs.getString("option_d"));
-        q.setCorrectOption(rs.getString("correct_option"));
-        return q;
-    };
-
-    public List<QuizQuestion> findAll() {
-        return jdbcTemplate.query(
-                "SELECT * FROM quiz_question",
-                rowMapper
-        );
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public QuizQuestion findById(int id) {
-        return jdbcTemplate.queryForObject(
-                "SELECT * FROM quiz_question WHERE id = ?",
-                rowMapper,
-                id
-        );
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void save(QuizQuestion q) {
-        jdbcTemplate.update(
-                "INSERT INTO quiz_question (question, option_a, option_b, option_c, option_d, correct_option) VALUES (?,?,?,?,?,?)",
-                q.getQuestion(),
-                q.getOptionA(),
-                q.getOptionB(),
-                q.getOptionC(),
-                q.getOptionD(),
-                q.getCorrectOption()
-        );
+    public int getScore() {
+        return score;
+    }
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void save(QuizQuestion question) {
+
+    }
+
+    public Collection<Object> findAll() {
+        return java.util.List.of();
+    }
+
+    public QuizQuestion findById(int questionId) {
+        return null;
     }
 }
